@@ -35,21 +35,36 @@ OpenClaw 服务器 ──HTTP──▶ Cloudflare Tunnel ──▶ 本地电脑 
 
 ## 📅 进度记录
 
-### 2026-05-05 → 05-06：首次尝试
+### 2026-05-05 → 05-06：首次尝试（远程桌面）
 
-**操作：** 在大黄本地电脑启动 GPT-SoVITS API
+**操作：** 在大黄台式机（Windows）上启动 GPT-SoVITS API
 
-**遇到的问题：**
-- ❌ 本地电脑运行 API 时出现大量依赖缺失报错
-- ❌ 之前已经正常运行过 GPT-SoVITS，但这次依赖问题很多
+**环境信息：**
+- GPT-SoVITS 位置：`F:\GPT_SoVITS\GPT-SoVITS-v2pro-20250604\GPT-SoVITS-v2pro-20250604`
+- Python 3.10.11（系统环境）
+- 项目自带 Python：`runtime\python.exe`（独立环境）
 
-**可能原因（待确认）：**
-1. GPT-SoVITS 代码更新后 `requirements.txt` 变了，但没重新安装依赖
-2. Python 虚拟环境/conda 环境切换了，当前环境里没有装过依赖
-3. `requirements.txt` 本身有版本冲突或不完整
-4. 某些系统级依赖（如 ffmpeg、libsndfile）没装
+**遇到的问题及解决：**
+1. ❌ `jieba`、`matplotlib` 缺失 → ✅ 已装
+2. ❌ `pyopenjtalk` 编译失败（日语库，中文不需要）→ ✅ 跳过
+3. ❌ `x_transformers` 缺失 → ✅ 已装
+4. ❌ `peft` 版本冲突 → ✅ 已装
+5. ❌ `torchaudio 2.7.1` vs `torch 2.11.0` 版本不匹配 → ✅ 降级 torch 到 2.7.1
+6. ❌ `split_lang` 模块找不到 → ✅ 发现需要用项目自带的 `runtime\python.exe` 运行
+7. ❌ `ref_audio_path` 参数缺失 → ✅ 补充参考音频路径
 
-**下一步：** 等大黄在家里台式机上继续操作，排查依赖问题
+**关键发现：**
+- GPT-SoVITS v2pro 使用**独立 Python 环境**（`runtime\python.exe`），不是系统 Python
+- 模型文件在：`SoVITS_weights_v2ProPlus\`
+- 参考音频在：`output\slicer_opt\`
+
+**✅ 最终成果：**
+- API 服务成功启动：`http://127.0.0.1:9880`
+- Cloudflare Tunnel 临时隧道已创建
+- TTS 端点测试成功，能听到声音！
+- API 端点：`/tts?text=xxx&text_lang=zh&prompt_lang=zh&ref_audio_path=xxx.wav`
+
+**下一步：** 配置 Cloudflare 持久隧道（固定域名），集成到 OpenClaw
 
 ---
 
@@ -72,12 +87,13 @@ OpenClaw 服务器 ──HTTP──▶ Cloudflare Tunnel ──▶ 本地电脑 
 
 ## 🔧 待办
 
-- [ ] 排查本地电脑依赖问题
-- [ ] 本地电脑成功启动 GPT-SoVITS API
-- [ ] 配置 Cloudflare Tunnel 暴露端口
+- [x] 排查本地电脑依赖问题
+- [x] 本地电脑成功启动 GPT-SoVITS API
+- [x] 测试 TTS 端点（能听到声音）
+- [ ] 配置 Cloudflare 持久隧道（固定域名）
 - [ ] OpenClaw 服务器测试调用 API
 - [ ] 实现自动切换逻辑（GPT-SoVITS → Edge TTS 降级）
-- [ ] 测试语音效果
+- [ ] 集成到钉钉/飞书/语音消息
 
 ---
 
@@ -88,4 +104,4 @@ OpenClaw 服务器 ──HTTP──▶ Cloudflare Tunnel ──▶ 本地电脑 
 
 ---
 
-_最后更新：2026-05-06 11:06_
+_最后更新：2026-05-06 22:19_
