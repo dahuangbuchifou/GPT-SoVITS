@@ -53,13 +53,30 @@ OpenClaw 服务器 ──HTTP──▶ Cloudflare Tunnel ──▶ 本地电脑 
 
 ---
 
+## 🎯 最终方案（2026-05-06 确认）
+
+**Edge TTS 为主 + 本地 GPT-SoVITS 为辅**
+
+**切换逻辑：**
+1. 每次需要 TTS 时，先尝试调用 GPT-SoVITS API（超时 3 秒）
+2. 成功 → 用婉儿声音
+3. 失败 → 自动降级到 Edge TTS
+
+**不需要心跳检测**，按需探测即可。
+
+**后续优化（可选）：**
+- 缓存在线状态（30 分钟内不重复探测）
+- 切换时通知大黄
+
+---
+
 ## 🔧 待办
 
 - [ ] 排查本地电脑依赖问题
 - [ ] 本地电脑成功启动 GPT-SoVITS API
 - [ ] 配置 Cloudflare Tunnel 暴露端口
 - [ ] OpenClaw 服务器测试调用 API
-- [ ] 集成到 OpenClaw TTS 流程
+- [ ] 实现自动切换逻辑（GPT-SoVITS → Edge TTS 降级）
 - [ ] 测试语音效果
 
 ---
