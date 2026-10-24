@@ -1,0 +1,31 @@
+{
+  "messages": {
+    "tts": {
+      "provider": "tts-local-cli",
+      "providers": {
+        "tts-local-cli": {
+          "command": "/home/admin/.openclaw/venvs/waner-tts/bin/python",
+          "args": [
+            "/home/admin/.openclaw/skills/gpt_sovits_tts_v3/waner_provider_v3.py",
+            "--text",
+            "{{Text}}",
+            "--emotion",
+            "ordinary",
+            "--output",
+            "{{OutputPath}}",
+            "--env-file",
+            "/home/admin/.config/openclaw/waner-tts.env"
+          ],
+          "outputFormat": "mp3",
+          "timeoutMs": 60000,
+          "cwd": "/home/admin/.openclaw/skills/gpt_sovits_tts_v3"
+        }
+      }
+    }
+  },
+  "settings_tts_json": {
+    "tts": {
+      "auto": "off"
+    }
+  }
+}
