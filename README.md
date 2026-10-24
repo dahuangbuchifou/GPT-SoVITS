@@ -4,6 +4,31 @@ _目标：让婉儿拥有自己的声音，通过 TTS 输出语音消息_
 
 ---
 
+## ✅ 当前权威稳定基线（2026-10-24）
+
+当前正式架构已经完成 Phase 5E / 5F 验收，并通过 Windows 整机重启恢复门禁。
+
+```text
+OpenClaw
+→ tts-local-cli
+→ V3.1
+→ ECS localhost:19890
+→ Reverse SSH
+→ Windows Waner 9890
+→ GPT-SoVITS 9880
+```
+
+普通聊天保持 `auto=off`；显式 `/tts audio` 按需生成婉儿语音；主链异常自动降级 Edge TTS。
+
+权威归档：
+
+- [Waner TTS Stable Baseline — 2026-10-24](docs/waner-tts-stable-baseline-2026-10-24/README.md)
+- [Authority SOP V1.0](docs/waner-tts-stable-baseline-2026-10-24/SOP.md)
+
+> 下方 2026-05 的 Cloudflare 架构与“Edge 为主”等内容保留为历史记录，不再代表当前生产架构。
+
+---
+
 ## 📋 需求
 
 | 场景 | 频率 | 要求 |
