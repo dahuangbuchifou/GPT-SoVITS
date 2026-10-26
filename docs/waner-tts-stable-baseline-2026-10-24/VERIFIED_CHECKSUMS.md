@@ -14,3 +14,11 @@ SHA-256: bfcb7eb69aa702b45fa862c262577c1b943b2ce7885dd1bb3c5ed1fd191ea8f4
 ```
 
 The real bearer token, SSH private key, production ECS endpoint, and production environment file are intentionally excluded from this public repository.
+
+
+Phase 6B production emotion router:
+
+```text
+waner_voice_router_v1.py
+SHA-256: 1e483a436f73a769e6445c9e80f75004a34e0097465a3a876b837694e8368a84
+```
