@@ -44,3 +44,13 @@ Conversational voice and dynamic emotion routing are now validated and frozen.
 - [Waner emotion router V1](waner_voice_router_v1.py)
 
 Validated safety state remains `auto=off`, with the built-in `tts` tool explicitly added to the existing `coding` tool profile through `alsoAllow`.
+
+
+## Phase 6C update — 2026-10-27
+
+Session-scoped continuous Waner voice-chat has been implemented and safety-gated.
+
+- [Phase 6C session voice-chat baseline](PHASE6C_SESSION_VOICE_CHAT.md)
+- [Voice-chat plugin installation / rollback note](VOICE_CHAT_PLUGIN_INSTALLATION.md)
+
+The design keeps OpenClaw global TTS `auto=off` and scopes voice-chat state by stable `sessionKey`.
