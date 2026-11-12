@@ -6,7 +6,7 @@
 
 独立开发包名称：`Dahuangs_Voice_Studio_C9_Dev_V01.zip`；包SHA-256：
 
-`87a05c11a8da9d4846f4dd361a272577258eb9fd1f4e825abc5dca33eb609894`
+`9cbf1b99c8b9fec527b956608d104ad4ec88231042fbf3e060e17013fd499a63`
 
 开发版为本地Python 3.10+标准库HTTP服务，包含：
 
@@ -21,7 +21,7 @@
 
 - Python语法检查与前端JavaScript语法检查通过；
 - 6项自动化集成测试通过：默认禁用、网页和Registry读取、Origin/CSRF/Host校验、URI权限、模拟本机LLM/TTS的聊天与WAV保存、未获授权的研究模型阻断、参考音频SHA阻断；
-- ZIP结构完整性检查通过（11个文件）；
+- ZIP结构完整性检查通过（11个文件），Windows PowerShell安装脚本已采用UTF-8 BOM以兼容中文文件名；
 - **尚未在用户Windows实机安装或验证浏览器页面**；无头Chromium在隔离测试环境启动超时，因此不标记视觉验收通过；
 - **未调用任何真实大语言模型或生产/实验TTS模型**；未修改原Waner Voice Studio V1.4、生产Gateway、OpenClaw或权重；
 - 本次Github只归档研发状态，不将本地开发包、服务端源码或带路径的用户配置上传Public仓库。代码应在后续Private VoiceFactory仓库中版本化。
