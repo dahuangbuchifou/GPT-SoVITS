@@ -31,3 +31,12 @@
 ## 公有仓库边界
 
 本仓库只保留脱敏归档，不上传补丁源码、原始声音、转写文本、私人预设、权重、私人日志或完整调用参数值。C9工程源码后续进入Private VoiceFactory仓库管理。
+
+
+## 2026-11-12 单文件安装器 V3 修正记录
+
+- V2 在 Windows 双击启动后复现 `-c: error: unrecognized arguments: E:\\下载\\Run_C9_02_OneClick_Installer.cmd`。**原因是内嵌 Python 运行前没有移除用于读取CMD自身的文件路径，`argparse` 把它误识别为业务参数**，不属于GPT-SoVITS故障。该报错发生于安装逻辑执行前，不代表补丁已成功写入。
+- V3 单文件名：`Run_C9_02_OneClick_Installer_V3.cmd`；SHA-256：`f3b49ba9b7813ee3fa21c03713aee0ef8b005c4a054aeab8d427562cc2170229`。
+- 调用器修复：提取内嵌代码后，将 `sys.argv` 重置为仅包含脚本名，避免路径进入 `argparse`；仍使用ASCII与CRLF。
+- 验证：使用与CMD一致的 `python -c` 调用方式，确认不再出现参数错误；模拟首次安装、幂等重复运行、参考SHA篡改停止均通过。
+- **限制：** 未在用户Windows上运行V3，也未执行真实语音合成；安装器不自动恢复9880/9890生产服务。若关闭了生产CMD窗口，应按原有生产SOP检查和恢复服务，不由开发版安装器操作。
