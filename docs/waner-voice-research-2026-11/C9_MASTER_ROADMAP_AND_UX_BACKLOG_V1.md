@@ -37,7 +37,7 @@
 |C9-13 独立模型运行|**dahuang显示更名成功、独立加载PASS；首次独立TTS仅写出0.74秒近静音WAV，质量FAIL**|V1校验门槛过宽误报READY；-62.84dBFS、峰值0.00403，无有效语音。保留一次性锁，暂停复跑，先对齐插件成功参数并修验收门禁|
 |C9-14 dahuang新模型对照|**独立单句技术PASS + 用户试听像本人5/5、自然度5/5**|仅一个样本的主观认可；e15/s100作为首个候选，不代表长文本/情绪/生产稳定性达标|
 |C9-15 dahuang模型候选注册|**Windows实机注册和复核通过，仍不可执行**|`C9_15_CANDIDATE_REGISTERED_VERIFIED_NO_CHANGE`；双SHA+有效WAV+人工5/5均一致，Factory catalog research/disabled，Studio及生产默认未修改|
-|C9-16M Studio多声音接入|**用户实机只读结构报告PASS；开发版禁用候选展示桥接包准备好，安装待验收**|当前前后端SHA对应C9-06/C9-07冻结版本；仅追加voice_002/dahuang到开发版registry，research/disabled，保持婉儿不变，不调用TTS|
+|C9-16M Studio多声音接入|**开发版禁用候选展示实机PASS：网页显示婉儿+dahuang，dahuang仍不可执行**|Studio声音数1→2、注册回执与17861网页截图一致；没有更改默认、生产注册表或前后端（工具回执），真实TTS桥接尚未实现|
 |多声音标准化生产|**核心未完成**|L1真实试声、L2多参考审核、C9-11第二声音端到端仍待完成|
 |Private工程代码仓库与自动化测试|**待实施**|Public GitHub仅存脱敏技术归档，源码与私有配置应分离|
 
@@ -82,7 +82,7 @@
 
 ## 4. 里程碑与范围纪律
 
-**最新顺序：C9-15 Factory已完成`voice_002`/`dahuang`专属`e15_s100`候选注册，执行/发布禁用。C9-16M用户[只读桥接报告](C9_16M_STUDIO_DISABLED_DAHUANG_BRIDGE_PREPARED_20261116.md)证实开发版Studio仍只有1条婉儿voice，后端/前端与原C9-06/C9-07 SHA逐字节匹配，已有声音选择器和权限拒绝门禁。现交付**只向开发版Studio本地registry追加dahuang禁用条目**的最小可回滚补丁，18项离线测试通过，用户Windows实际安装/页面显示待验收；不改后端/前端代码，**绝不启用dahuang TTS或修改生产9880/9890**。后续独立TTS适配器与真切换需新权限。原C9-16远程访问计划保留、麦克风/STT暂停。**
+**最新顺序：C9-16M[本机网页与安全回执已确认](C9_16M_DAHUANG_DISABLED_STUDIO_BRIDGE_WINDOWS_ACCEPTED_20261116.md)在开发版Studio 17861真实显示两条声线：婉儿及`voice_002`/`dahuang`（e15_s100研究候选，disabled）；默认与生产注册表不变。**第一阶段禁用展示验收PASS；第二阶段Studio实际运行dahuang TTS尚未开发/授权。** 下一步先确认Studio启动入口与独立进程边界，设计不碰9880/9890的dahuang专用TTS适配与质量/资源门禁，待另行授权后再开始功能接入。原C9-16远程访问保留，麦克风/STT暂停。**
 
 每次完成后：记录用户实测证据/测试结果→更新本台账状态→经审查归档GitHub。未知项一律标记“未知/未验收”，不能以模拟测试替代实机验证。公开代码、原始录音、使用授权及远程发布分别审批。
 
