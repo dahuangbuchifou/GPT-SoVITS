@@ -1,6 +1,6 @@
 # C9-16M M03：dahuang独立TTS适配器MOCK V1已开发并离线验收
 
-**记录日期：2026-11-17。状态：M03受控请求/队列/WAV质量门禁的模拟工作器已完成真实代码交付并通过35项离线测试；用户Windows实机尚未运行。真实GPT-SoVITS推理、Studio路由、启用权限均未发生。**
+**记录日期：2026-11-17。状态：额外的M03 mock-only合同实现完成35项离线测试，用户Windows尚未运行本包。注意：主线此前已有21/21 Windows mock PASS，且已交付真正CPU子进程代码的预检包；本包仅补充回归测试，不构成必做实机门槛。真实GPT-SoVITS推理、Studio路由、启用权限均未发生。**
 
 ## 用户最新方向
 
@@ -40,10 +40,11 @@ WAV技术QC以标准库解析PCM（16-bit mono，允许特定常规采样率）�
 
 ## 下一步实施
 
-1. 用户双击`Run_C9_16M_M03_OneClick_Mock.cmd`，回传最新`C9_16M_M03_MOCK_SAFE_*.json`；只关注`C9_16M_M03_MOCK_CONTRACT_PASS_NO_REAL_TTS`及35项离线结果，不提交模拟WAV。
-2. M03-Real：固定模型SHA/Factory候选元数据与受控可中止子进程，真实GPT-SoVITS接口仅对本地DEV验证开放，单次合成另行授权；达到真实WAV质量门槛。
-3. M04：在开发版Studio注册单独dahuang后端路由，保留婉儿旧服务和双层授权；不能把候选研究状态自动升级生产。
-4. M05：多次回归、崩溃/取消、源模型变化和回滚，再讨论DEV启用。
-5. VF第三声音保持暂缓，原C9-16公网和STT都不加入当前工作。
+1. **直接沿用已经交付的更高级M03子进程版本**：详见[`C9_16M_M03_WINDOWS_MOCK_PASS_REAL_SUBPROCESS_CODE_READY_20261116.md`](C9_16M_M03_WINDOWS_MOCK_PASS_REAL_SUBPROCESS_CODE_READY_20261116.md)。用户无需为本补充包重复执行mock。先只运行既有包的`00_OneClick_M03_Precheck_And_Subprocess_Mock.cmd`，取得Windows真实预检/父子进程模拟报告；不运行真实TTS入口。
+2. 通过后再申请单独真实CPU/FP32推理授权，验证固定GSV_02单句与WAV质量门槛；此阶段不触碰Studio或9880/9890。
+3. M04：开发版Studio新增独立dahuang后端路由，保留婉儿旧服务和双层授权；不能把候选研究状态自动升级生产。
+4. M05：回归、崩溃/取消、资源与回滚，再讨论DEV启用。VF第三声音、远程和STT暂缓。
+
+**附注：**本额外35项纯mock离线测试可用于维护后续通用适配器，不应替代已准备的真实子进程执行器，也不要将两个包混装/覆盖旧代码。
 
 Public GitHub只记录本脱敏研发证据，不上传可执行源码、权重、录音、私有Registry、API Key、音频、聊天文本或本机私人工作目录。
