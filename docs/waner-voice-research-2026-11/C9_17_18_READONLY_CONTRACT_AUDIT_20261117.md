@@ -58,3 +58,21 @@ Public 仓库只放本脱敏摘要及证据索引；不上传原始报告中的�
 - **不修改原后端、Studio Registry、生产或 DEV 运行服务**，不访问网络、API、模型，也不意味着 M04 实时切换完成。
 
 下一步：用户 Windows 双击 `00_OneClick_M04_Offline_Route_Check.cmd`，回传脱敏 JSON 验证合同；并行推进 M03 真实工作器恢复/重新审核与独立执行许可，不再重复已经通过的 mock 或模型双权重校验。
+
+## 2026-11-17 M04 Windows 离线路由合同验收与 DEV 候选补丁
+
+用户 Windows 回执：`M04_ROUTE_OFFLINE_SAFE_20261117T143713Z.json`（私有原件不上传 Public）。
+
+- `status=M04_OFFLINE_CONTRACT_PASS_NOT_DEPLOYED`，`test_count=17`、`test_passed=17`、无失败项。
+- 后端仍与冻结的 C9-17/18 基线匹配；Registry 有效；`waner_plan_ok=true`，`dahuang_denied=true`，非法声线/模型组合被拒绝。
+- 证据明确 `tts_called=false`、`model_loaded=false`、`route_patch_deployed=false`、`real_worker_installed=false`、`runtime_switch_authorized=false`；此结果**不是 Studio 双声线实际可执行切换**。
+
+据此制作新的**M04 DEV 后端候选补丁生成包**：`Dahuangs_C9_16M_M04_Guarded_DEV_Backend_Stage_OneClick_V1.zip`。其一键入口：`00_OneClick_M04_Create_Guarded_DEV_Patch.cmd`。
+
+- 仅当本机未修改 DEV 后端 SHA 与 research/disabled 的 Voice 002 Registry 均匹配时，从用户本机源码生成带强制身份隔离的 Python 后端**候选副本**，并保存到独立 `tools/C9_M04_DEV_Guarded_Staging`；原后端不被替换。
+- 对 `voice_002` 请求，在访问全局婉儿 HTTP TTS 前执行硬拒绝；即便只修改 Registry 元数据为 enabled/approved，也仍不允许落入婉儿接口；独立工作器未安装时只返回明确错误。
+- 18/18 项纯离线候选代码合同测试通过；本地临时根目录模拟了成功生成、重复运行幂等和后端 SHA 漂移阻断；ZIP CRC、成员 SHA、CMD CRLF 检查通过。**尚未在用户 Windows 上运行新包。**
+- 此包**不包含**原 M03 真实子进程工作器，不启动任何模型/网络/端口，不修改运行中的 17861 服务或生产 9880/9890、OpenClaw，未赋予执行授权。
+- M03 真正 CPU 独立 worker 仍需可审核的实现及单次真实试声许可；在此之前 M04 实际路由、M05 回归均保持待验。
+
+本轮 ZIP SHA-256：`5567f14e773632495a180a76b0866b223994a7b040a06fc5d15bd62d6377fcc4`。只在私有用户会话交付 ZIP；Public 仓库继续仅保存本脱敏状态记录。
