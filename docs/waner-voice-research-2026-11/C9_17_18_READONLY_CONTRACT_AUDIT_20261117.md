@@ -36,3 +36,25 @@
 用户确认后续优先采用“下载 ZIP → 解压 → 双击 CMD → 自动建目录/生成脱敏 JSON 回执 → 上传回执验收”的低操作负担方式，避免重复手动输入 PowerShell；第三个声音继续暂缓，远程访问及 STT 后置。
 
 Public 仓库只放本脱敏摘要及证据索引；不上传原始报告中的私有绝对路径、私有配置、权重、录音、转写、聊天明文、令牌或可执行私有工作器代码。此文档只归档工程状态，不包含模型执行授权。
+
+## 2026-11-17 M03 延续回执（补充）
+
+用户 Windows 端后续上传三份脱敏报告（报告原件仅留本地，不提交 Public）：
+
+- `C9_16M_M03_REISSUE_SAFE_20261117T140802Z.json`：重新制作的 **mock-only** 替代包，`M03_REISSUE_MOCK_ONLY_PASS`；独立子进程成功退出，合成数学测试音 3.0 秒、32kHz/16-bit 单声道、QC PASS。未运行真实模型、未验证原版完整门禁，不能等同原 M03 真实执行器。
+- `M03_ASSET_SHA_SAFE_20261117T141238Z.json`：`M03_FROZEN_WEIGHT_PAIR_AND_CANDIDATE_PASS`；大黄 e15+s100 两份权重 SHA 与 C9-15 冻结值一致，Factory 私有候选证据存在，Studio 模型仍 research/disabled；未加载模型、未执行 TTS。
+- `M03_SOURCE_A03_DISCOVERY_SAFE_20261117T143225Z.json`：`LOCAL_REFERENCE_AND_HISTORICAL_ENGINE_MATCH_NEEDS_FREEZE_APPROVAL`；A03 实际文件 SHA 与本地候选清单一致，发现引擎源码 SHA 与历史回执一致；**但 A03 尚未与独立冻结回执验证、引擎也未获独立冻结值确认，`original_m03_full_gate_pass=false`**。不得将“历史一致性”当作审批通过。
+
+**后续范围**：上述证据补强了静态身份和离线隔离合同，未恢复或替代原 `Dahuangs_C9_16M_M03_Real_CPU_Subprocess_Worker_Gate_V1.zip` 的真实工作器代码。真实 CPU/FP32 TTS 仍需恢复/重新审核受信任执行器、冻结引擎与参考、取得新的单次明确许可。
+
+## M04 离线路由合同首版（不部署）
+
+本轮另制作 `Dahuangs_C9_16M_M04_Offline_Route_Contract_OneClick_V1.zip`，离线合成注册表下 17/17 合同测试通过（**非用户 Windows 实机验收**）。
+
+- 仅读取现有 DEV 后端哈希与 Studio 本地注册表，规划（不调用）婉儿现有路由；
+- 大黄即便被手工将 `enabled` 改为 true，仍因缺少 DEV 独立工作器执行许可被明确拒绝；
+- 非法模型、声线串用、权限缺失被拒绝，不作婉儿回退冒名；
+- 仅在 `tools/C9_M04_Route_Offline` 复制独立测试文件、写入 `artifacts/c9_multivoice/M04_ROUTE_OFFLINE_SAFE_*.json`；
+- **不修改原后端、Studio Registry、生产或 DEV 运行服务**，不访问网络、API、模型，也不意味着 M04 实时切换完成。
+
+下一步：用户 Windows 双击 `00_OneClick_M04_Offline_Route_Check.cmd`，回传脱敏 JSON 验证合同；并行推进 M03 真实工作器恢复/重新审核与独立执行许可，不再重复已经通过的 mock 或模型双权重校验。
