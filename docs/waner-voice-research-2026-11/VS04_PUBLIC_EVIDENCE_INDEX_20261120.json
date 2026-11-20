@@ -1,0 +1,54 @@
+{
+  "schema": "VS04_PUBLIC_EVIDENCE_INDEX_v1",
+  "date": "2026-11-20",
+  "visibility": "PUBLIC_REDACTED_SUMMARY",
+  "receipt_count_private": 4,
+  "stages": [
+    {
+      "id": "VS-03.1",
+      "status": "PRIOR_USER_ACCEPTED_DEV_BASELINE",
+      "evidence": "HISTORICAL_REAL_TTS_HUMAN_ACCEPTANCE",
+      "reuse": "YES_IF_RELEVANT_CODE_UNCHANGED"
+    },
+    {
+      "id": "VS-04A",
+      "status": "COLLECTED_WITH_POSSIBLE_LIMITATIONS",
+      "evidence": "WINDOWS_POINT_IN_TIME_RESOURCE_SNAPSHOT",
+      "reuse": "SNAPSHOT_ONLY_NEW_REAL_LOAD_NEEDS_FRESH_SAMPLE"
+    },
+    {
+      "id": "VS-04B/C",
+      "status": "PASS_ISOLATED_DEMO_ONLY",
+      "evidence": "WINDOWS_SUBPROCESS_SIMULATED_QUEUE_8_OF_8",
+      "reuse": "YES_IF_QUEUE_CODE_UNCHANGED_NO_REAL_TTS_PROVEN"
+    },
+    {
+      "id": "VS-04B.2",
+      "status": "PASS_READONLY_SOURCE_DISCOVERY_NOT_RUNTIME_APPROVAL",
+      "evidence": "STATIC_SOURCE_AND_GUARD_8_CASES",
+      "reuse": "YES_IF_ADAPTER_CONTRACT_UNCHANGED"
+    },
+    {
+      "id": "VS-04B.3",
+      "status": "NEEDS_VS03_ENTRY_SOURCE_NOT_LOCATED",
+      "evidence": "STATIC_SOURCE_FINGERPRINT_4_OF_4_MATCH",
+      "reuse": "DO_NOT_REPEAT_IDENTICAL_BOUNDED_SCAN"
+    }
+  ],
+  "blocker": "EXACT_DEV_BRIDGE_SOURCE_BINDING_UNPROVEN",
+  "next_gate": "STATIC_REVIEW_OF_ORIGINAL_VS03_1_ARCHIVE_AND_M03_CALL_CONTRACT",
+  "no_claims": [
+    "VS04_REAL_MODEL_RESIDENCY",
+    "VS04_REAL_TTS",
+    "GPU_APPROVAL",
+    "PRODUCTION_RELEASE",
+    "ACTIVE_STUDIO_FAILURE"
+  ],
+  "private_archive_integrity": {
+    "members": 9,
+    "zip_crc": "PASS",
+    "four_json_sha256_match_uploaded_files": true,
+    "scope": "ASSISTANT_WORKSPACE_FILE_INTEGRITY"
+  },
+  "raw_receipts_published": false
+}
